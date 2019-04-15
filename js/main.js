@@ -1,3 +1,7 @@
+
+const studentContainer = document.querySelector("#container");
+//^^used to grab the container to input students in the functions below
+
 const students = [
   {
     name: "Chris Miller",
@@ -101,11 +105,8 @@ const element = (type, content, style) => {
   studentContainer.appendChild(el);
 }
 
-
-const studentContainer = document.querySelector("#container");
-
-const createStudentComponents = (obj) => {
-  for (const student of obj) {
+const createStudentComponents = (objArr) => {
+  for (const student of objArr) {
     let studentComponent = "";
     student.status = "";
     if (student.score >= 60) {
@@ -122,5 +123,3 @@ const createStudentComponents = (obj) => {
 }
 
 createStudentComponents(students);
-
-console.log("lemme work it.");
