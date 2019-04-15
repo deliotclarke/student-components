@@ -75,32 +75,52 @@ const students = [
 
 //write functions to create h1 section and aside
 
+// const h1 = (name) => {
+//   // the function needs to create an element and then take an argument that plugs the data into the element - does not need to append
+//   let data = document.createTextNode(name);
+//   let newH = document.createElement("H1");
+//   newH.appendChild(data);
+//   console.log(newH);
+//   document.parentNode.appendChild(newH);
+// }
+
+// const h1 = (name) => {
+//   return `<h1>${name}</h1>`
+// }
+// const section = (subject) => {
+//   return `<section>${subject}</section>`
+// }
+// const aside = (info) => {
+//   return `<aside>${info}</aside>`
+// }
+
+const element = (type, content, style) => {
+  let el = document.createElement(type);
+  el.className = style;
+  el.textContent = content;
+  studentContainer.appendChild(el);
+}
+
 
 const studentContainer = document.querySelector("#container");
 
 const createStudentComponents = (obj) => {
   for (const student of obj) {
-    let studentComponent = ""
+    let studentComponent = "";
+    student.status = "";
     if (student.score >= 60) {
-      studentComponent = `<div class="student">
-    <h1 class="xx-large passing">${student.name}</h1>
-    <section class="bordered dashed section--padded">${student.subject}</section>
-    <aside class="pushRight">${student.info}</aside>
-    </div>`;
-      studentContainer.innerHTML += studentComponent;
-    } else if (student.score < 60) {
-      studentComponent = `<div class="student">
-    <h1 class="xx-large failing">${student.name}</h1>
-    <section class="bordered dashed section--padded">${student.subject}</section>
-    <aside class="pushRight">${student.info}</aside>
-    </div>`;
-      studentContainer.innerHTML += studentComponent;
+      student.status = "passing";
+    } else {
+      student.status = "failing";
     }
+    studentComponent = `<div class="student">
+      ${element("H1", student.name, `xx-large ${student.status}`)}
+      ${element("SECTION", student.subject, "bordered dashed section--padded")}
+      ${element("ASIDE", student.info, "pushRight")}
+      </div >`
   }
 }
 
 createStudentComponents(students);
 
-console.log("is it worth it?");
-
-
+console.log("lemme work it.");
