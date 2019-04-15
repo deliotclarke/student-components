@@ -73,28 +73,34 @@ const students = [
   }
 ]
 
-
+//write functions to create h1 section and aside
 
 
 const studentContainer = document.querySelector("#container");
 
-
-
-for (const student of students) {
-  let studentComponent = ""
-  if (student.score >= 60) {
-    studentComponent = `<div class="student">
+const createStudentComponents = (obj) => {
+  for (const student of obj) {
+    let studentComponent = ""
+    if (student.score >= 60) {
+      studentComponent = `<div class="student">
     <h1 class="xx-large passing">${student.name}</h1>
     <section class="bordered dashed section--padded">${student.subject}</section>
     <aside class="pushRight">${student.info}</aside>
     </div>`;
-    studentContainer.innerHTML += studentComponent;
-  } else if (student.score < 60) {
-    studentComponent = `<div class="student">
+      studentContainer.innerHTML += studentComponent;
+    } else if (student.score < 60) {
+      studentComponent = `<div class="student">
     <h1 class="xx-large failing">${student.name}</h1>
     <section class="bordered dashed section--padded">${student.subject}</section>
     <aside class="pushRight">${student.info}</aside>
     </div>`;
-    studentContainer.innerHTML += studentComponent;
+      studentContainer.innerHTML += studentComponent;
+    }
   }
 }
+
+createStudentComponents(students);
+
+console.log("is it worth it?");
+
+
